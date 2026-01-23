@@ -519,9 +519,18 @@
               <p className="hero-subtitle text-base sm:text-lg md:text-xl text-[#D4A853] mb-2 sm:mb-3 tracking-wide">
                 Where Every Bite is a Treasure
               </p>
-              <p className="hero-subtitle text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 px-4 max-w-md" style={{ fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
+              <p className="hero-subtitle text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-5 px-4 max-w-md" style={{ fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
                 Artisan coffee & scratch-made fare in the heart of Vero Beach
               </p>
+              <div className="hero-subtitle flex items-center justify-center gap-2 mb-6 sm:mb-8 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-[#D4A853] fill-current" />
+                  ))}
+                </div>
+                <span className="text-white font-semibold">5.0</span>
+                <span className="text-gray-300 text-sm">on Google</span>
+              </div>
               <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
                 <button
                   onClick={() => setCurrentPage('menu')}
@@ -535,6 +544,54 @@
                 >
                   Visit Us
                 </button>
+              </div>
+            </div>
+          </section>
+
+          {/* Signature Dish Spotlight */}
+          <section className="py-12 sm:py-20 px-4 bg-[#1B2B4B] text-white relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-10 left-10 w-32 h-32 border border-[#D4A853] rounded-full" />
+              <div className="absolute bottom-10 right-10 w-48 h-48 border border-[#D4A853] rounded-full" />
+              <div className="absolute top-1/2 left-1/4 w-20 h-20 border border-[#D4A853] rounded-full" />
+            </div>
+            <div className="max-w-6xl mx-auto relative">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <AnimatedSection className="order-2 md:order-1">
+                  <span className="shimmer-badge inline-block px-3 py-1 text-xs font-semibold text-[#1B2B4B] rounded mb-4">
+                    Signature Dish
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    Golden Orange Waffle
+                  </h2>
+                  <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed">
+                    Our most beloved creation—a bright, citrus-kissed waffle with perfectly crisp golden edges
+                    and a pillowy soft center. Topped with silky whipped orange butter and drizzled with
+                    warm maple syrup.
+                  </p>
+                  <p className="text-[#D4A853] italic mb-6 sm:mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    "The waffle that put us on the map"
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                    <span className="text-2xl sm:text-3xl font-bold text-[#D4A853]">$10</span>
+                    <button
+                      onClick={() => setCurrentPage('menu')}
+                      className="btn-hover px-6 py-3 border-2 border-[#D4A853] text-[#D4A853] font-semibold uppercase tracking-wider hover:bg-[#D4A853] hover:text-[#1B2B4B] transition-colors text-sm"
+                    >
+                      View Full Menu
+                    </button>
+                  </div>
+                </AnimatedSection>
+                <AnimatedSection delay={200} className="order-1 md:order-2">
+                  <div className="relative">
+                    <div className="absolute -inset-4 bg-[#D4A853]/20 rounded-lg transform rotate-3" />
+                    <img
+                      src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=600&h=450&fit=crop"
+                      alt="Golden Orange Waffle"
+                      className="relative w-full aspect-[4/3] object-cover rounded-lg shadow-2xl"
+                    />
+                  </div>
+                </AnimatedSection>
               </div>
             </div>
           </section>
@@ -723,38 +780,38 @@
     // Menu Data
     const menuData = {
       breakfast: [
-        { name: 'Breakfast Burrito', price: 12, desc: 'Salsa Verde, Herbed Potatoes, Cheddar, Bacon, Pickled Red Onion, Red Chili & Parsley', image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&h=300&fit=crop' },
-        { name: 'Avocado Toast', price: 12, desc: 'Egg Over Medium, Arugula, Tomato, Chili Flakes, EVOO on Multi-Grain', image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop' },
-        { name: 'Bacon, Egg & Cheese', price: 10, desc: 'Chipotle Mayo, Cheddar, Fried Egg on Brioche with Herbed Potatoes', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop' },
-        { name: 'Farmers Breakfast', price: 12, desc: '2 Eggs, Bacon or Sausage, Herb Roasted Potatoes & Choice of Toast', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop' },
-        { name: 'Golden Orange Waffle', price: 10, desc: 'Orange Zest Waffle with Whipped Orange Butter & Maple Syrup', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop', signature: true },
-        { name: 'Artisan Omelette', price: 13, desc: '3 Eggs with choice of three fillings, Herb Potatoes & Toast', image: 'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=400&h=300&fit=crop' },
+        { name: 'Breakfast Burrito', price: 12, desc: 'Warm flour tortilla wrapped around zesty salsa verde, crispy herbed potatoes, melted cheddar, smoky bacon & tangy pickled red onion', image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&h=300&fit=crop' },
+        { name: 'Avocado Toast', price: 12, desc: 'Creamy smashed avocado on toasted multi-grain, topped with a runny egg, peppery arugula & a drizzle of golden olive oil', image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop' },
+        { name: 'Bacon, Egg & Cheese', price: 10, desc: 'Crispy bacon, melted cheddar & a perfectly fried egg on a buttery brioche bun with smoky chipotle mayo', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop' },
+        { name: 'Farmers Breakfast', price: 12, desc: 'Two farm-fresh eggs your way, savory bacon or sausage, golden herb-roasted potatoes & your choice of artisan toast', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop' },
+        { name: 'Golden Orange Waffle', price: 10, desc: 'Bright citrus-kissed waffle with crisp golden edges, pillowy center, topped with silky whipped orange butter & warm maple syrup', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop', signature: true },
+        { name: 'Artisan Omelette', price: 13, desc: 'Fluffy three-egg omelette folded around your choice of premium fillings, served with herb-kissed potatoes & toast', image: 'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=400&h=300&fit=crop' },
       ],
       sandwiches: [
-        { name: 'Bacon, Tomato, Avocado', price: 13, desc: 'Basil, Wild Arugula, Lemon Aioli on Toasted Sourdough', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop', signature: true },
-        { name: 'Roast Beef', price: 13, desc: 'Caramelized Onions, Arugula, Horseradish Aioli on Sourdough', image: 'https://images.unsplash.com/photo-1619096252214-ef06c45683e3?w=400&h=300&fit=crop' },
-        { name: 'Curry Chicken Salad', price: 13, desc: 'Toasted Almonds, Mango Chutney on Multi-Grain', image: 'https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=400&h=300&fit=crop' },
-        { name: 'Smoked Turkey', price: 13, desc: 'Fig Jam Aioli, Arugula on Sourdough', image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop' },
-        { name: 'Greek Turkey Burger', price: 13, desc: 'Avocado Dill Tzatziki, Pickled Red Onion on Brioche', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop' },
-        { name: 'Little Gem Grilled Cheese', price: 12, desc: 'Smoked Ham, Gruyere, Caramelized Onion, Grain Mustard Aioli', image: 'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=400&h=300&fit=crop' },
+        { name: 'Bacon, Tomato, Avocado', price: 13, desc: 'Thick-cut crispy bacon, vine-ripe tomatoes & buttery avocado layered with fresh basil and bright lemon aioli on golden sourdough', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop', signature: true },
+        { name: 'Roast Beef', price: 13, desc: 'Tender slow-roasted beef piled high with sweet caramelized onions, peppery arugula & creamy horseradish aioli', image: 'https://images.unsplash.com/photo-1619096252214-ef06c45683e3?w=400&h=300&fit=crop' },
+        { name: 'Curry Chicken Salad', price: 13, desc: 'Aromatic curry-spiced chicken salad with crunchy toasted almonds & sweet mango chutney on hearty multi-grain', image: 'https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=400&h=300&fit=crop' },
+        { name: 'Smoked Turkey', price: 13, desc: 'Honey-smoked turkey with sweet fig jam aioli & crisp arugula on rustic sourdough', image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop' },
+        { name: 'Greek Turkey Burger', price: 13, desc: 'Juicy seasoned turkey patty topped with cool avocado-dill tzatziki & zingy pickled red onion on a toasted brioche', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop' },
+        { name: 'Little Gem Grilled Cheese', price: 12, desc: 'Melty gruyere & smoky ham with sweet caramelized onions and tangy grain mustard aioli, griddled to golden perfection', image: 'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=400&h=300&fit=crop' },
       ],
       salads: [
-        { name: 'Green Goddess Chicken', price: 15, desc: 'Shaved Greens, Green Apple, Cucumber, Avocado, Pumpkin Seeds', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop' },
-        { name: 'Asian Chicken Salad', price: 15, desc: 'Sesame Panko Chicken, Oranges, Almonds, Orange Miso Dressing', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop' },
-        { name: 'Little Gem Caesar', price: 12, desc: 'Preserved Lemon Dressing, Sun-dried Tomatoes, Croutons', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&h=300&fit=crop', signature: true },
-        { name: 'House Salad', price: 11, desc: 'Mixed Greens, Tomatoes, Pickled Onion, Parmesan, Sherry Shallot', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop' },
+        { name: 'Green Goddess Chicken', price: 15, desc: 'Tender grilled chicken over crisp shaved greens, tart green apple, cool cucumber & creamy avocado with toasted pumpkin seeds', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop' },
+        { name: 'Asian Chicken Salad', price: 15, desc: 'Crispy sesame-panko chicken with bright citrus segments, crunchy almonds & a silky orange-miso dressing', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop' },
+        { name: 'Little Gem Caesar', price: 12, desc: 'Crisp little gem lettuce with our signature preserved lemon dressing, sun-dried tomatoes & house-made garlic croutons', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&h=300&fit=crop', signature: true },
+        { name: 'House Salad', price: 11, desc: 'Fresh mixed greens with ripe tomatoes, tangy pickled onion, shaved parmesan & bright sherry-shallot vinaigrette', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop' },
       ],
       baked: [
-        { name: 'Morning Glory Muffin', price: 5, desc: 'Carrots, apple, coconut, and warm spices', image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&h=300&fit=crop' },
-        { name: 'Lemon Mixed Berry Muffin', price: 5, desc: 'Bright lemon with seasonal berries', image: 'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=300&fit=crop' },
-        { name: 'Assorted Scones', price: 5, desc: 'Changes daily - ask your server', image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop' },
-        { name: 'Butter Croissant', price: 6, desc: 'Flaky, buttery layers', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=300&fit=crop' },
-        { name: 'Chocolate Croissant', price: 6, desc: 'Rich chocolate filling', image: 'https://images.unsplash.com/photo-1530610476181-d83430b64dcd?w=400&h=300&fit=crop' },
-        { name: 'Pretzel Croissant', price: 6, desc: 'Salted pretzel exterior', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop' },
+        { name: 'Morning Glory Muffin', price: 5, desc: 'Moist and hearty with shredded carrots, sweet apple, toasted coconut & warming spices—a sunrise in every bite', image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&h=300&fit=crop' },
+        { name: 'Lemon Mixed Berry Muffin', price: 5, desc: 'Bright citrus zest meets juicy seasonal berries in a tender, golden-topped muffin', image: 'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=300&fit=crop' },
+        { name: 'Assorted Scones', price: 5, desc: 'Buttery, crumbly perfection—our rotating selection changes daily. Ask your server for today\'s flavors', image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop' },
+        { name: 'Butter Croissant', price: 6, desc: 'Impossibly flaky layers of golden, buttery pastry—shatteringly crisp outside, soft and airy within', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=300&fit=crop' },
+        { name: 'Chocolate Croissant', price: 6, desc: 'Rich bittersweet chocolate wrapped in delicate, buttery layers—pure indulgence', image: 'https://images.unsplash.com/photo-1530610476181-d83430b64dcd?w=400&h=300&fit=crop' },
+        { name: 'Pretzel Croissant', price: 6, desc: 'A playful twist—flaky croissant meets chewy pretzel with coarse sea salt crystals', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop' },
       ],
       kids: [
-        { name: 'Scrambled Eggs & Toast', price: 8, desc: 'Simple and delicious', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop' },
-        { name: 'Grilled Cheese', price: 8, desc: 'Classic comfort', image: 'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=400&h=300&fit=crop' },
+        { name: 'Scrambled Eggs & Toast', price: 8, desc: 'Fluffy, creamy scrambled eggs with your choice of buttered toast—simple and satisfying', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop' },
+        { name: 'Grilled Cheese', price: 8, desc: 'Golden-griddled comfort—melty cheese between perfectly toasted bread', image: 'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=400&h=300&fit=crop' },
       ],
     };
 
