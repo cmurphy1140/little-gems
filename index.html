@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1B2B4B">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-navbutton-color" content="#1B2B4B">
   <title>Little Gem Cafe - Vero Beach</title>
   <link rel="icon" type="image/png" href="littlegem-logo.png">
+  <link rel="apple-touch-icon" href="littlegem-logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -143,6 +147,108 @@
     }
     .btn-primary:hover {
       box-shadow: 0 4px 15px rgba(27, 43, 75, 0.3);
+    }
+
+    /* Warm accent color - Golden */
+    .accent-gold { color: #D4A853; }
+    .bg-accent-gold { background-color: #D4A853; }
+    .border-accent-gold { border-color: #D4A853; }
+    .hover\:bg-accent-gold-dark:hover { background-color: #C49A48; }
+
+    /* Enhanced card hover with glow */
+    .card-glow {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-glow:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(212, 168, 83, 0.15);
+    }
+
+    /* Shimmer effect for featured items */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-badge {
+      background: linear-gradient(90deg, #D4A853 0%, #F0D89D 50%, #D4A853 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    /* Pulse animation for CTA buttons */
+    @keyframes subtlePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(212, 168, 83, 0); }
+    }
+    .pulse-gold {
+      animation: subtlePulse 2s ease-in-out infinite;
+    }
+
+    /* Smooth image zoom on hover */
+    .img-zoom {
+      overflow: hidden;
+    }
+    .img-zoom img {
+      transition: transform 0.5s ease;
+    }
+    .img-zoom:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Text reveal animation */
+    @keyframes revealText {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+    .text-reveal {
+      animation: revealText 0.8s ease-out forwards;
+    }
+
+    /* Floating animation for decorative elements */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Gradient text effect */
+    .gradient-text {
+      background: linear-gradient(135deg, #D4A853 0%, #F0D89D 50%, #D4A853 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4A853;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C49A48;
+    }
+
+    /* Decorative divider */
+    .divider-gem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .divider-gem::before,
+    .divider-gem::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, #D4A853, transparent);
     }
   </style>
 </head>
@@ -404,56 +510,82 @@
               <div className="absolute inset-0 bg-[#1B2B4B]/40" />
             </div>
             <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 sm:px-6">
-              <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <div className="hero-title divider-gem mb-4 sm:mb-6">
+                <span className="text-[#D4A853] text-xs sm:text-sm uppercase tracking-[0.3em]">Est. 2024</span>
+              </div>
+              <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Little Gem
               </h1>
-              <p className="hero-subtitle text-lg sm:text-xl md:text-2xl italic text-gray-200 mb-6 sm:mb-8 px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                Coffee • Breakfast • Lunch — Vero Beach
+              <p className="hero-subtitle text-base sm:text-lg md:text-xl text-[#D4A853] mb-2 sm:mb-3 tracking-wide">
+                Where Every Bite is a Treasure
+              </p>
+              <p className="hero-subtitle text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 px-4 max-w-md" style={{ fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
+                Artisan coffee & scratch-made fare in the heart of Vero Beach
               </p>
               <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
                 <button
                   onClick={() => setCurrentPage('menu')}
-                  className="btn-hover btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#1B2B4B] font-semibold uppercase tracking-wider hover:bg-gray-100 transition-colors text-sm sm:text-base"
+                  className="btn-hover btn-primary pulse-gold px-6 sm:px-8 py-3 sm:py-4 bg-[#D4A853] text-[#1B2B4B] font-semibold uppercase tracking-wider hover:bg-[#C49A48] transition-colors text-sm sm:text-base"
                 >
-                  View Menu
+                  Explore Our Menu
                 </button>
                 <button
                   onClick={() => setCurrentPage('contact')}
-                  className="btn-hover px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-semibold uppercase tracking-wider hover:bg-white/10 transition-colors text-sm sm:text-base"
+                  className="btn-hover px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#D4A853] text-white font-semibold uppercase tracking-wider hover:bg-[#D4A853]/20 transition-colors text-sm sm:text-base"
                 >
-                  Find Us
+                  Visit Us
                 </button>
               </div>
             </div>
           </section>
 
-          {/* Our Commitment */}
+          {/* Our Story */}
           <section className="py-12 sm:py-20 px-4 bg-white">
-            <div className="max-w-5xl mx-auto text-center">
+            <div className="max-w-5xl mx-auto text-center mb-10 sm:mb-16">
               <AnimatedSection>
+                <div className="divider-gem mb-4">
+                  <span className="text-[#D4A853]">&#9670;</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Our Commitment
+                  Our Story
                 </h2>
-                <p className="text-gray-600 mb-10 sm:mb-16 max-w-2xl mx-auto text-sm sm:text-base">
-                  Fresh ingredients, family recipes, neighborhood warmth. Every dish crafted with care.
+                <p className="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">
+                  A family café in beautiful Vero Beach, passionate about quality and community.
                 </p>
               </AnimatedSection>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-                {[
-                  { icon: Coffee, title: 'Fresh Daily', desc: 'Made from scratch every morning' },
-                  { icon: Heart, title: 'Family Operated', desc: 'Serving Vero Beach with heart' },
-                  { icon: Leaf, title: 'Quality Ingredients', desc: 'Local and artisan sourced' },
-                ].map((item, i) => (
-                  <AnimatedCard key={i} index={i} className="text-center">
-                    <div className="w-14 sm:w-16 h-14 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-                      <item.icon className="w-7 sm:w-8 h-7 sm:h-8 text-[#1B2B4B]" strokeWidth={1.5} />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm">{item.desc}</p>
-                  </AnimatedCard>
-                ))}
+            </div>
+
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <AnimatedSection>
+                  <img
+                    src="littlegem-storefront.png"
+                    alt="Little Gem Café Storefront"
+                    className="w-full aspect-[4/3] object-cover rounded-lg"
+                  />
+                </AnimatedSection>
+                <AnimatedSection delay={200}>
+                  <h3 className="text-2xl sm:text-3xl mb-4 sm:mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    More Than Just Coffee
+                  </h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base text-left">
+                    <p>
+                      Welcome to Little Gem — our family-operated café in beautiful Vero Beach!
+                      We believe that great food and coffee bring people together, and that's exactly
+                      what we set out to create.
+                    </p>
+                    <p>
+                      We serve artisan coffee, a variety of fine teas, and fresh, made-daily breakfast
+                      and lunch. Our warm, friendly environment invites you to relax, connect, and
+                      enjoy high-quality ingredients and heartfelt service.
+                    </p>
+                    <p>
+                      From our signature Golden Orange Waffle to our beloved Little Gem Caesar salad,
+                      every dish is crafted with care and passion. We're your neighborhood spot for
+                      comfort and great taste.
+                    </p>
+                  </div>
+                </AnimatedSection>
               </div>
             </div>
           </section>
@@ -462,27 +594,35 @@
           <section className="py-12 sm:py-20 px-4 bg-gray-50">
             <div className="max-w-6xl mx-auto">
               <AnimatedSection className="text-center mb-8 sm:mb-16">
+                <div className="divider-gem mb-4">
+                  <span className="text-[#D4A853]">&#9670;</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Products & Services
+                  Discover Our Fare
                 </h2>
-                <p className="text-gray-600 text-sm sm:text-base">A selection of artisan products prepared with passion</p>
+                <p className="text-gray-600 text-sm sm:text-base">Artisan products prepared with passion, fresh every morning</p>
               </AnimatedSection>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
                 {categories.map((cat, i) => (
                   <AnimatedCard key={i} index={i}>
                     <button
                       onClick={() => setCurrentPage(cat.page)}
-                      className="card-hover group relative overflow-hidden aspect-[4/3] bg-gray-200 w-full rounded-lg"
+                      className="card-glow group relative overflow-hidden aspect-[4/3] bg-gray-200 w-full rounded-lg"
                     >
                       <img
                         src={cat.image}
                         alt={cat.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
-                      <h3 className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white text-base sm:text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {cat.name}
-                      </h3>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-colors duration-300" />
+                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                        <h3 className="text-white text-base sm:text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {cat.name}
+                        </h3>
+                        <span className="text-[#D4A853] text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          Explore &rarr;
+                        </span>
+                      </div>
                     </button>
                   </AnimatedCard>
                 ))}
@@ -490,7 +630,7 @@
               <AnimatedSection delay={400} className="text-center mt-8 sm:mt-12">
                 <button
                   onClick={() => setCurrentPage('menu')}
-                  className="btn-hover btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-[#1B2B4B] text-white font-semibold uppercase tracking-wider hover:bg-[#2A3F5F] transition-colors text-sm sm:text-base"
+                  className="btn-hover btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-[#D4A853] text-[#1B2B4B] font-semibold uppercase tracking-wider hover:bg-[#C49A48] transition-colors text-sm sm:text-base"
                 >
                   View Full Menu
                 </button>
@@ -502,14 +642,17 @@
           <section className="py-12 sm:py-20 px-4 bg-white">
             <div className="max-w-6xl mx-auto">
               <AnimatedSection className="text-center mb-8 sm:mb-16">
+                <div className="divider-gem mb-4">
+                  <span className="text-[#D4A853]">&#9670;</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                   What Our Guests Say
                 </h2>
-                <div className="flex items-center justify-center gap-2 text-[#1B2B4B]">
-                  <span className="text-xl sm:text-2xl font-bold">5.0</span>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-xl sm:text-2xl font-bold text-[#1B2B4B]">5.0</span>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 fill-current" />
+                      <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-[#D4A853] fill-current" />
                     ))}
                   </div>
                   <span className="text-gray-500 ml-2 text-sm sm:text-base">on Google</span>
@@ -517,16 +660,16 @@
               </AnimatedSection>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
                 {testimonials.map((testimonial, i) => (
-                  <AnimatedCard key={i} index={i} className="card-hover bg-gray-50 p-5 sm:p-8 rounded-lg relative">
-                    <Quote className="w-8 sm:w-10 h-8 sm:h-10 text-[#1B2B4B]/10 absolute top-4 sm:top-6 right-4 sm:right-6" />
+                  <AnimatedCard key={i} index={i} className="card-glow bg-gray-50 p-5 sm:p-8 rounded-lg relative border-b-4 border-transparent hover:border-[#D4A853] transition-all duration-300">
+                    <Quote className="w-8 sm:w-10 h-8 sm:h-10 text-[#D4A853]/20 absolute top-4 sm:top-6 right-4 sm:right-6" />
                     <div className="flex mb-3 sm:mb-4">
                       {[...Array(testimonial.rating)].map((_, j) => (
-                        <Star key={j} className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star key={j} className="w-4 h-4 text-[#D4A853] fill-current" />
                       ))}
                     </div>
                     <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">"{testimonial.text}"</p>
                     <div className="flex items-center gap-3">
-                      <div className="w-9 sm:w-10 h-9 sm:h-10 bg-[#1B2B4B] rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
+                      <div className="w-9 sm:w-10 h-9 sm:h-10 bg-gradient-to-br from-[#D4A853] to-[#C49A48] rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
                         {testimonial.name.charAt(0)}
                       </div>
                       <div>
@@ -543,11 +686,14 @@
           {/* Visit Us */}
           <section className="py-12 sm:py-20 px-4 bg-gray-50 text-center">
             <AnimatedSection>
+              <div className="divider-gem mb-4">
+                <span className="text-[#D4A853]">&#9670;</span>
+              </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Visit Us
               </h2>
               <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">1910 Old Dixie Highway, Vero Beach, FL 32960</p>
-              <p className="text-base sm:text-lg font-medium text-[#1B2B4B] mb-6 sm:mb-8">Mon–Fri: 8AM–2PM | Sat–Sun: Closed</p>
+              <p className="text-base sm:text-lg font-medium text-[#D4A853] mb-6 sm:mb-8">Mon–Fri: 8AM–2PM | Sat–Sun: Closed</p>
               <button
                 onClick={() => setCurrentPage('contact')}
                 className="btn-hover btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-[#1B2B4B] text-white font-semibold uppercase tracking-wider hover:bg-[#2A3F5F] transition-colors text-sm sm:text-base"
@@ -581,11 +727,11 @@
         { name: 'Avocado Toast', price: 12, desc: 'Egg Over Medium, Arugula, Tomato, Chili Flakes, EVOO on Multi-Grain', image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop' },
         { name: 'Bacon, Egg & Cheese', price: 10, desc: 'Chipotle Mayo, Cheddar, Fried Egg on Brioche with Herbed Potatoes', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop' },
         { name: 'Farmers Breakfast', price: 12, desc: '2 Eggs, Bacon or Sausage, Herb Roasted Potatoes & Choice of Toast', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop' },
-        { name: 'Golden Orange Waffle', price: 10, desc: 'Orange Zest Waffle with Whipped Orange Butter & Maple Syrup', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop' },
+        { name: 'Golden Orange Waffle', price: 10, desc: 'Orange Zest Waffle with Whipped Orange Butter & Maple Syrup', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop', signature: true },
         { name: 'Artisan Omelette', price: 13, desc: '3 Eggs with choice of three fillings, Herb Potatoes & Toast', image: 'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=400&h=300&fit=crop' },
       ],
       sandwiches: [
-        { name: 'Bacon, Tomato, Avocado', price: 13, desc: 'Basil, Wild Arugula, Lemon Aioli on Toasted Sourdough', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop' },
+        { name: 'Bacon, Tomato, Avocado', price: 13, desc: 'Basil, Wild Arugula, Lemon Aioli on Toasted Sourdough', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop', signature: true },
         { name: 'Roast Beef', price: 13, desc: 'Caramelized Onions, Arugula, Horseradish Aioli on Sourdough', image: 'https://images.unsplash.com/photo-1619096252214-ef06c45683e3?w=400&h=300&fit=crop' },
         { name: 'Curry Chicken Salad', price: 13, desc: 'Toasted Almonds, Mango Chutney on Multi-Grain', image: 'https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=400&h=300&fit=crop' },
         { name: 'Smoked Turkey', price: 13, desc: 'Fig Jam Aioli, Arugula on Sourdough', image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop' },
@@ -595,7 +741,7 @@
       salads: [
         { name: 'Green Goddess Chicken', price: 15, desc: 'Shaved Greens, Green Apple, Cucumber, Avocado, Pumpkin Seeds', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop' },
         { name: 'Asian Chicken Salad', price: 15, desc: 'Sesame Panko Chicken, Oranges, Almonds, Orange Miso Dressing', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop' },
-        { name: 'Little Gem Caesar', price: 12, desc: 'Preserved Lemon Dressing, Sun-dried Tomatoes, Croutons', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&h=300&fit=crop' },
+        { name: 'Little Gem Caesar', price: 12, desc: 'Preserved Lemon Dressing, Sun-dried Tomatoes, Croutons', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&h=300&fit=crop', signature: true },
         { name: 'House Salad', price: 11, desc: 'Mixed Greens, Tomatoes, Pickled Onion, Parmesan, Sherry Shallot', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop' },
       ],
       baked: [
@@ -664,7 +810,7 @@
                 placeholder="Search for a product..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 pr-12 border-b-2 border-gray-300 bg-transparent focus:border-[#1B2B4B] outline-none text-center transition-colors duration-300 text-sm sm:text-base"
+                className="w-full px-4 py-3 pr-12 border-b-2 border-gray-300 bg-transparent focus:border-[#D4A853] outline-none text-center transition-colors duration-300 text-sm sm:text-base"
               />
               <Search className="absolute right-6 sm:right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             </AnimatedSection>
@@ -679,8 +825,8 @@
                     onClick={() => setActiveTab(tab.id)}
                     className={`px-3 sm:px-4 py-2 whitespace-nowrap text-xs sm:text-sm font-semibold uppercase tracking-wider transition-colors flex-shrink-0 ${
                       activeTab === tab.id
-                        ? 'text-[#1B2B4B] border-b-2 border-[#1B2B4B]'
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? 'text-[#1B2B4B] border-b-2 border-[#D4A853]'
+                        : 'text-gray-500 hover:text-[#D4A853]'
                     }`}
                   >
                     {tab.label}
@@ -694,19 +840,24 @@
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {getItems().map((item, i) => (
-                  <AnimatedCard key={`${item.name}-${i}`} index={i % 6} className="card-hover group cursor-pointer">
-                    <div className="aspect-[4/3] overflow-hidden mb-3 sm:mb-4 rounded-lg">
+                  <AnimatedCard key={`${item.name}-${i}`} index={i % 6} className="card-glow group cursor-pointer">
+                    <div className="aspect-[4/3] overflow-hidden mb-3 sm:mb-4 rounded-lg relative">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
+                      {item.signature && (
+                        <span className="shimmer-badge absolute top-3 left-3 px-2 py-1 text-xs font-semibold text-[#1B2B4B] rounded">
+                          Signature
+                        </span>
+                      )}
                     </div>
                     <div className="flex justify-between items-start mb-2 gap-2">
                       <h3 className="text-base sm:text-lg font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
                         {item.name}
                       </h3>
-                      <span className="text-[#1B2B4B] font-semibold text-sm sm:text-base flex-shrink-0">${item.price.toFixed(2)}</span>
+                      <span className="text-[#D4A853] font-semibold text-sm sm:text-base flex-shrink-0">${item.price.toFixed(2)}</span>
                     </div>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                   </AnimatedCard>
