@@ -343,7 +343,7 @@
     // Navigation Component
     const Navigation = ({ currentPage, setCurrentPage }) => {
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-      
+
       const navItems = [
         { id: 'home', label: 'Home', icon: Home },
         { id: 'menu', label: 'Menu', icon: UtensilsCrossed },
@@ -356,34 +356,35 @@
       return (
         <header className="bg-white shadow-sm sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3">
-                <img src="littlegem-logo.png" alt="Little Gem Logo" className="h-16 w-auto object-contain" />
-              </button>
-
-              <nav className="hidden lg:flex items-center gap-1">
+            <div className="flex justify-center items-center h-20">
+              <nav className="hidden lg:flex items-center gap-8">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setCurrentPage(item.id)}
-                    className={`nav-link flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                    className={`nav-link flex items-center gap-2 px-5 py-3 rounded-lg transition-all duration-300 ${
                       currentPage === item.id
                         ? 'text-[#1B2B4B] bg-gray-50'
                         : 'text-gray-600 hover:text-[#1B2B4B] hover:bg-gray-50'
                     }`}
                   >
-                    <item.icon className="w-4 h-4" />
-                    <span className="text-sm font-medium">{item.label}</span>
+                    <item.icon className="w-5 h-5" />
+                    <span className="text-base font-medium">{item.label}</span>
                   </button>
                 ))}
               </nav>
 
-              <button 
+              <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 text-gray-600"
+                className="lg:hidden absolute right-4 p-2 text-gray-600"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
               </button>
+
+              {/* Mobile: Show centered text logo */}
+              <span className="lg:hidden text-xl font-semibold text-[#1B2B4B]" style={{ fontFamily: 'Playfair Display, serif' }}>
+                Little Gem
+              </span>
             </div>
 
             {mobileMenuOpen && (
