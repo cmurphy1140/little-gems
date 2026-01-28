@@ -6,15 +6,70 @@
   <meta name="theme-color" content="#1B2B4B">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="msapplication-navbutton-color" content="#1B2B4B">
+  <meta name="description" content="Little Gem Cafe - Family-operated cafe in Vero Beach, FL. Fresh breakfast, lunch, artisan coffee, and catering. Mon-Fri 8AM-2PM.">
+  <meta property="og:title" content="Little Gem Cafe - Vero Beach">
+  <meta property="og:description" content="Family-operated cafe serving fresh breakfast, lunch, and artisan coffee in Vero Beach, FL.">
+  <meta property="og:image" content="logo1.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Little Gem Cafe - Vero Beach">
+  <meta name="twitter:description" content="Family-operated cafe serving fresh breakfast, lunch, and artisan coffee in Vero Beach, FL.">
   <title>Little Gem Cafe - Vero Beach</title>
-  <link rel="icon" type="image/png" href="littlegem-logo.png">
-  <link rel="apple-touch-icon" href="littlegem-logo.png">
+  <link rel="icon" type="image/png" href="logo1.png">
+  <link rel="apple-touch-icon" href="logo1.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Little Gem Cafe",
+    "image": "logo1.png",
+    "url": "https://littlegemcafe.com",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1910 Old Dixie Highway",
+      "addressLocality": "Vero Beach",
+      "addressRegion": "FL",
+      "postalCode": "32960",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "14:00"
+      }
+    ],
+    "servesCuisine": "American",
+    "priceRange": "$$"
+  }
+  </script>
   <style>
+    /* CSS Custom Properties */
+    :root {
+      --color-primary: #1B2B4B;
+      --color-accent: #D4A853;
+      --color-bg: #fafafa;
+    }
+
+    /* Respect user motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     html { scroll-behavior: smooth; }
 
     /* Subtle background pattern */
@@ -212,6 +267,126 @@
       animation: revealText 0.8s ease-out forwards;
     }
 
+    /* Scroll indicator bounce */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-12px) translateX(-50%); }
+      60% { transform: translateY(-6px) translateX(-50%); }
+    }
+    .scroll-indicator {
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    /* Gradient text effect */
+    .gradient-text {
+      background: linear-gradient(135deg, #D4A853 0%, #F0D89D 50%, #D4A853 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Floating animation for decorative elements */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Staggered fade in for lists */
+    .stagger-fade > * {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    .stagger-fade > *:nth-child(1) { animation-delay: 0.1s; }
+    .stagger-fade > *:nth-child(2) { animation-delay: 0.2s; }
+    .stagger-fade > *:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-fade > *:nth-child(4) { animation-delay: 0.4s; }
+    .stagger-fade > *:nth-child(5) { animation-delay: 0.5s; }
+    .stagger-fade > *:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Interactive button with ripple effect */
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-ripple::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    .btn-ripple:active::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Glowing border on focus */
+    .glow-focus:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.4);
+    }
+
+    /* Parallax sections */
+    .parallax-slow {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    /* Hover lift for images */
+    .hover-lift {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Underline grow animation */
+    .underline-grow {
+      position: relative;
+      display: inline-block;
+    }
+    .underline-grow::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #D4A853, #F0D89D);
+      transition: width 0.4s ease;
+    }
+    .underline-grow:hover::after {
+      width: 100%;
+    }
+
+    /* Rotate on hover */
+    .hover-rotate {
+      transition: transform 0.3s ease;
+    }
+    .hover-rotate:hover {
+      transform: rotate(5deg);
+    }
+
+    /* Scale pop effect */
+    .hover-pop {
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .hover-pop:hover {
+      transform: scale(1.05);
+    }
+    .hover-pop:active {
+      transform: scale(0.98);
+    }
+
     /* Floating animation for decorative elements */
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
@@ -356,35 +531,44 @@
       return (
         <header className="bg-white shadow-sm sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center items-center h-20">
-              <nav className="hidden lg:flex items-center gap-8">
+            <div className="flex justify-between items-center h-24">
+              {/* Logo */}
+              <button
+                onClick={() => setCurrentPage('home')}
+                className="flex items-center"
+              >
+                <img
+                  src="logo1.png"
+                  alt="Little Gem Cafe"
+                  className="h-20 w-auto"
+                />
+              </button>
+
+              {/* Desktop Navigation - Right aligned, smaller text */}
+              <nav className="hidden lg:flex items-center gap-1">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setCurrentPage(item.id)}
-                    className={`nav-link flex items-center gap-2 px-5 py-3 rounded-lg transition-all duration-300 ${
+                    className={`nav-link flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-300 ${
                       currentPage === item.id
                         ? 'text-[#1B2B4B] bg-gray-50'
                         : 'text-gray-600 hover:text-[#1B2B4B] hover:bg-gray-50'
                     }`}
                   >
-                    <item.icon className="w-5 h-5" />
-                    <span className="text-base font-medium">{item.label}</span>
+                    <item.icon className="w-4 h-4" />
+                    <span className="text-sm font-medium">{item.label}</span>
                   </button>
                 ))}
               </nav>
 
+              {/* Mobile menu button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden absolute right-4 p-2 text-gray-600"
+                className="lg:hidden p-2 text-gray-600"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
               </button>
-
-              {/* Mobile: Show centered text logo */}
-              <span className="lg:hidden text-xl font-semibold text-[#1B2B4B]" style={{ fontFamily: 'Playfair Display, serif' }}>
-                Little Gem
-              </span>
             </div>
 
             {mobileMenuOpen && (
@@ -416,7 +600,7 @@
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12">
             <div className="text-center sm:text-left">
               <div className="mb-4 bg-white/10 p-2 rounded inline-block">
-                <img src="littlegem-logo.png" alt="Little Gem Logo" className="h-12 sm:h-16 w-auto object-contain" />
+                <img src="logo1.png" alt="Little Gem Logo" className="h-12 sm:h-16 w-auto object-contain" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Family-operated café serving artisan coffee and fresh, made-daily breakfast and lunch in beautiful Vero Beach.
@@ -459,10 +643,10 @@
                 </li>
               </ul>
               <div className="flex gap-4 mt-4 sm:mt-6 justify-center sm:justify-start">
-                <a href="https://www.instagram.com/littlegemverobeach/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors p-2 -m-2">
+                <a href="https://www.instagram.com/littlegemverobeach/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="text-gray-300 hover:text-white transition-colors p-2 -m-2">
                   <Instagram className="w-6 h-6 sm:w-5 sm:h-5" />
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=61576552007609" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors p-2 -m-2">
+                <a href="https://www.facebook.com/profile.php?id=61576552007609" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="text-gray-300 hover:text-white transition-colors p-2 -m-2">
                   <Facebook className="w-6 h-6 sm:w-5 sm:h-5" />
                 </a>
               </div>
@@ -502,42 +686,46 @@
       const categories = [
         { name: 'Breakfast', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop', page: 'menu' },
         { name: 'Sandwiches', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop', page: 'menu' },
-        { name: 'Salads', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop', page: 'menu' },
         { name: 'Coffee', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop', page: 'coffee' },
-        { name: 'Baked Goods', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop', page: 'menu' },
         { name: 'Catering', image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=300&fit=crop', page: 'catering' },
       ];
 
       return (
         <div>
           {/* Hero */}
-          <section className="relative h-[100svh] sm:h-[90vh] min-h-[500px] sm:min-h-[600px]">
+          <section className="relative h-[100svh] sm:h-[100vh] min-h-[600px] sm:min-h-[700px]">
             <div
               className="absolute inset-0 hero-parallax"
               style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1920&h=1080&fit=crop)' }}
             >
-              <div className="absolute inset-0 bg-[#1B2B4B]/40" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#8B7355]/30 to-[#D4A853]/20" />
             </div>
-            <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 sm:px-6">
-              <div className="hero-title divider-gem mb-4 sm:mb-6">
-                <span className="text-[#D4A853] text-xs sm:text-sm uppercase tracking-[0.3em]">Est. 2024</span>
-              </div>
-              <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 sm:px-6 -mt-20 sm:-mt-24">
+              <h1 className="hero-title text-6xl sm:text-7xl md:text-9xl font-semibold italic mb-6 sm:mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Little Gem
               </h1>
               <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
                 <button
                   onClick={() => setCurrentPage('menu')}
-                  className="btn-hover btn-primary pulse-gold px-6 sm:px-8 py-3 sm:py-4 bg-[#D4A853] text-[#1B2B4B] font-semibold uppercase tracking-wider hover:bg-[#C49A48] transition-colors text-sm sm:text-base"
+                  className="btn-hover btn-ripple btn-primary pulse-gold px-6 sm:px-8 py-3 sm:py-4 bg-[#D4A853] text-[#1B2B4B] font-semibold uppercase tracking-wider hover:bg-[#C49A48] transition-colors text-sm sm:text-base rounded-sm"
                 >
                   Explore Our Menu
                 </button>
                 <button
                   onClick={() => setCurrentPage('contact')}
-                  className="btn-hover px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#D4A853] text-white font-semibold uppercase tracking-wider hover:bg-[#D4A853]/20 transition-colors text-sm sm:text-base"
+                  className="btn-hover btn-ripple px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#D4A853] text-white font-semibold uppercase tracking-wider hover:bg-[#D4A853]/20 transition-colors text-sm sm:text-base rounded-sm"
                 >
                   Visit Us
                 </button>
+              </div>
+            </div>
+            {/* Scroll indicator */}
+            <div className="absolute bottom-8 left-1/2 scroll-indicator">
+              <div className="flex flex-col items-center text-white/70">
+                <span className="text-xs uppercase tracking-widest mb-2">Scroll</span>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
               </div>
             </div>
           </section>
@@ -561,11 +749,14 @@
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <AnimatedSection>
-                  <img
-                    src="littlegem-storefront.png"
-                    alt="Little Gem Café Storefront"
-                    className="w-full aspect-[4/3] object-cover rounded-lg"
-                  />
+                  <div className="hover-lift rounded-lg overflow-hidden">
+                    <img
+                      src="littlegem-storefront.png"
+                      alt="Little Gem Café Storefront"
+                      loading="lazy"
+                      className="w-full aspect-[4/3] object-cover"
+                    />
+                  </div>
                 </AnimatedSection>
                 <AnimatedSection delay={200}>
                   <h3 className="text-2xl sm:text-3xl mb-4 sm:mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -605,7 +796,7 @@
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-base">Artisan products prepared with passion, fresh every morning</p>
               </AnimatedSection>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
                 {categories.map((cat, i) => (
                   <AnimatedCard key={i} index={i}>
                     <button
@@ -615,6 +806,7 @@
                       <img
                         src={cat.image}
                         alt={cat.name}
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-colors duration-300" />
@@ -663,7 +855,7 @@
               </AnimatedSection>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
                 {testimonials.map((testimonial, i) => (
-                  <AnimatedCard key={i} index={i} className="card-glow bg-gray-50 p-5 sm:p-8 rounded-lg relative border-b-4 border-transparent hover:border-[#D4A853] transition-all duration-300">
+                  <AnimatedCard key={i} index={i} className="card-glow hover-pop bg-gray-50 p-5 sm:p-8 rounded-lg relative border-b-4 border-transparent hover:border-[#D4A853] transition-all duration-300">
                     <Quote className="w-8 sm:w-10 h-8 sm:h-10 text-[#D4A853]/20 absolute top-4 sm:top-6 right-4 sm:right-6" />
                     <div className="flex mb-3 sm:mb-4">
                       {[...Array(testimonial.rating)].map((_, j) => (
@@ -699,7 +891,7 @@
               <p className="text-base sm:text-lg font-medium text-[#D4A853] mb-6 sm:mb-8">Mon–Fri: 8AM–2PM | Sat–Sun: Closed</p>
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="btn-hover btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-[#1B2B4B] text-white font-semibold uppercase tracking-wider hover:bg-[#2A3F5F] transition-colors text-sm sm:text-base"
+                className="btn-hover btn-ripple btn-primary px-6 sm:px-8 py-3 sm:py-4 bg-[#1B2B4B] text-white font-semibold uppercase tracking-wider hover:bg-[#2A3F5F] transition-colors text-sm sm:text-base rounded-sm"
               >
                 Get Directions
               </button>
@@ -764,8 +956,7 @@
     // Menu Page
     const MenuPage = () => {
       const [activeTab, setActiveTab] = useState('all');
-      const [searchQuery, setSearchQuery] = useState('');
-      
+
       const tabs = [
         { id: 'all', label: 'All' },
         { id: 'breakfast', label: 'Breakfast' },
@@ -784,39 +975,29 @@
         } else {
           items = menuData[activeTab]?.map(item => ({ ...item, category: activeTab })) || [];
         }
-        
-        if (searchQuery) {
-          items = items.filter(item => 
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.desc.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-        }
-        
+
         return items;
       };
 
       return (
         <div className="min-h-screen bg-white page-enter">
-          <section className="py-12 sm:py-20 px-4 text-center bg-gray-50">
-            <AnimatedSection>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                Menu
-              </h1>
-              <p className="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">
-                A curated selection of fresh products, prepared each morning in our kitchen.
-              </p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={200} className="max-w-md mx-auto mt-6 sm:mt-8 relative px-2">
-              <input
-                type="text"
-                placeholder="Search for a product..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 pr-12 border-b-2 border-gray-300 bg-transparent focus:border-[#D4A853] outline-none text-center transition-colors duration-300 text-sm sm:text-base"
-              />
-              <Search className="absolute right-6 sm:right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            </AnimatedSection>
+          <section className="relative py-20 sm:py-32 px-4 text-center">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=1920&h=600&fit=crop)' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
+            </div>
+            <div className="relative">
+              <AnimatedSection>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 text-white" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  Menu
+                </h1>
+                <p className="text-gray-200 max-w-xl mx-auto text-sm sm:text-base">
+                  A curated selection of fresh products, prepared each morning in our kitchen.
+                </p>
+              </AnimatedSection>
+            </div>
           </section>
 
           <div className="sticky top-20 bg-white border-b z-40">
@@ -840,29 +1021,26 @@
           </div>
 
           <section className="py-8 sm:py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="max-w-3xl mx-auto">
+              <div className="divide-y divide-gray-100">
                 {getItems().map((item, i) => (
-                  <AnimatedCard key={`${item.name}-${i}`} index={i % 6} className="card-glow group cursor-pointer">
-                    <div className="aspect-[4/3] overflow-hidden mb-3 sm:mb-4 rounded-lg relative">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      {item.signature && (
-                        <span className="shimmer-badge absolute top-3 left-3 px-2 py-1 text-xs font-semibold text-[#1B2B4B] rounded">
-                          Signature
-                        </span>
-                      )}
+                  <AnimatedCard key={`${item.name}-${i}`} index={i % 6} className="py-4 sm:py-6 hover:bg-gray-50 transition-colors px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-lg">
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-base sm:text-lg font-semibold text-[#1B2B4B]" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {item.name}
+                          </h3>
+                          {item.signature && (
+                            <span className="shimmer-badge px-2 py-0.5 text-xs font-semibold text-[#1B2B4B] rounded">
+                              Signature
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                      </div>
+                      <span className="text-[#D4A853] font-semibold text-base sm:text-lg flex-shrink-0">${item.price.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between items-start mb-2 gap-2">
-                      <h3 className="text-base sm:text-lg font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {item.name}
-                      </h3>
-                      <span className="text-[#D4A853] font-semibold text-sm sm:text-base flex-shrink-0">${item.price.toFixed(2)}</span>
-                    </div>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                   </AnimatedCard>
                 ))}
               </div>
@@ -910,9 +1088,9 @@
           <section className="relative py-20 sm:py-32 px-4">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: 'url(download.webp)' }}
+              style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&h=600&fit=crop)' }}
             >
-              <div className="absolute inset-0 bg-[#1B2B4B]/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
             </div>
             <div className="relative text-center text-white">
               <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -1019,7 +1197,7 @@
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1555244162-803834f70033?w=1920&h=600&fit=crop)' }}
             >
-              <div className="absolute inset-0 bg-[#1B2B4B]/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
             </div>
             <div className="relative text-center text-white">
               <h1 className="hero-title text-3xl sm:text-5xl md:text-6xl mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -1102,6 +1280,7 @@
                 <img
                   src="littlegem-storefront.png"
                   alt="Little Gem Café Storefront"
+                  loading="lazy"
                   className="w-full aspect-[4/3] object-cover rounded-lg"
                 />
               </AnimatedSection>
